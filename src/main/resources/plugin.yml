@@ -1,0 +1,9 @@
+name: "${project.name}"
+main: "${project.groupId}.Pl3xMapClaimChunk"
+version: "${project.version}"
+description: "${project.description}"
+api-version: "1.16"
+authors: [ BillyGalbreath ]
+softdepend:
+  - ClaimChunk
+  - Pl3xMap
