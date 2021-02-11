@@ -82,8 +82,20 @@ public class Config {
     }
 
     private static Color getColor(String path, Color def) {
-        yaml.addDefault(path, Integer.toHexString(def.getRGB()));
-        String hex = (yaml.getString(path, yaml.getString(path)));
-        return new Color((int) Long.parseLong(hex.replace("#", ""), 16));
+        yaml.addDefault(path, colorToHex(def));
+        return hexToColor(yaml.getString(path, yaml.getString(path)));
+    }
+
+    private static String colorToHex(final Color color) {
+        return Integer.toHexString(color.getRGB() & 0x00FFFFFF);
+    }
+
+    private static Color hexToColor(final String hex) {
+        if (hex == null) {
+            return Color.RED;
+        }
+        String stripped = hex.replace("#", "");
+        int rgb = (int) Long.parseLong(stripped, 16);
+        return new Color(rgb);
     }
 }
